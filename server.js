@@ -10,6 +10,8 @@ app.use(express.static(__dirname+"/public"));
 //----------------------
 //Variable declarations
 let questionName;
+let urlObject = {};
+
 let qObjects ={
     "response_code": 0,
     "results": [
@@ -76,7 +78,7 @@ let qObjects ={
     ]
 }; // This is the object that would populate the list
 const url = "https://opentdb.com/api.php?amount=2&category=13&difficulty=easy&type=multiple";
-let port = +3000;
+let port = +3000; //localhost port
 
 // let p = new Promise((resolve, reject) =>{
 
@@ -114,14 +116,17 @@ app.get("/", function(req, res){
 
     
 } );
+let qExtract = {};
 
+ for (var i; i < qObjects.results.length;i++){
+qExtract[i] = qObjects.results[i]["category"];
+console.log(qObjects.results[i]);
 
-
+}
 console.log(qObjects.results.length);
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || port, function(){
     console.log("listening on port 2000");
     
     });
-
-    // for(var i = 0 ; i < qObjects.result)
+;
